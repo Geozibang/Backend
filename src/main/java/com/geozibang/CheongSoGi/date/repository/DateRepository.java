@@ -14,13 +14,13 @@ public interface DateRepository extends JpaRepository<Date, Long> {
     Date findByDay(Long date);
 
     @Query(
-            value = "select * from 'date' where year = :year and month = :month and day = :day"
+            value = "select * from sobi_date where year = :year and month = :month and day = :day"
             , nativeQuery = true
     )
     Date findByYearMonthDay(@Param("year")Long year, @Param("month")Long month, @Param("day")Long day);
 
     @Query(
-            value = "select * from 'date' where year = :year and month = :month"
+            value = "select * from sobi_date where year = :year and month = :month"
             , nativeQuery = true
     )
     List<Date> findAllByYearMonth(@Param("year") Long year, @Param("month")Long month);

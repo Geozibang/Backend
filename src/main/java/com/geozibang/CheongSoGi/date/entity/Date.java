@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name="date")
+@Table(name="sobi_date")
 public class Date {
 
     @Id
