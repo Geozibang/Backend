@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/date")
+@CrossOrigin(origins = "*")
 public class DateController {
 
     private final DateService dateService;

@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/sobi")
+@CrossOrigin(origins = "*")
 public class SobiController {
     private final SobiService sobiService;
 
@@ -30,16 +31,10 @@ public class SobiController {
     /* -------------- 소비보기 화면 -------------*/
 
     // 소비보기 화면에서 전체 소비 볼 때,
-    @GetMapping("/readbydate/{year}/{month}/{day}")
-    public ResponseEntity<List<Sobi>> readSobi(
-            @PathVariable(name = "year") Long year,
-            @PathVariable(name = "month") Long month,
-            @PathVariable(name = "day") Long day
-    ){
-        DateDto dateDto = DateDto.builder().year(year).month(month).day(day).build();
+    @GetMapping("/consume")
+    public ResponseEntity<List<Sobi>> readSobi(){
 
-
-        return ResponseEntity.ok(sobiService.findAllbyDate(dateDto));
+        return ResponseEntity.ok(sobiService.findAll());
     }
 
     // 사용 x
