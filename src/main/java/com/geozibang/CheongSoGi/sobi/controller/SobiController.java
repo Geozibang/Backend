@@ -30,10 +30,15 @@ public class SobiController {
     /* -------------- 소비보기 화면 -------------*/
 
     // 소비보기 화면에서 전체 소비 볼 때,
-    @GetMapping("/readbydate")
+    @GetMapping("/readbydate/{year}/{month}/{day}")
     public ResponseEntity<List<Sobi>> readSobi(
-            @RequestBody DateDto dateDto
+            @PathVariable(name = "year") Long year,
+            @PathVariable(name = "month") Long month,
+            @PathVariable(name = "day") Long day
     ){
+        DateDto dateDto = DateDto.builder().year(year).month(month).day(day).build();
+
+
         return ResponseEntity.ok(sobiService.findAllbyDate(dateDto));
     }
 
@@ -73,10 +78,14 @@ public class SobiController {
     /* -------------- 달력보기화면 ---------------*/
 
     // 달력보기 화면에서 날짜 클릭할 때, -> 해당 날짜의 소비들 반환
-    @GetMapping("/month/readDate")
+    @GetMapping("/month/readDate/{year}/{month}/{day}")
     public ResponseEntity<List<Sobi>> MonthreadDate(
-            @RequestBody DateDto dateDto
-    ){
+            @PathVariable(name = "year") Long year,
+            @PathVariable(name = "month") Long month,
+            @PathVariable(name = "day") Long day
+            ){
+        DateDto dateDto = DateDto.builder().year(year).month(month).day(day).build();
+
         List<Sobi> targetMonth = sobiService.findAllbyDate(dateDto);
         List<Sobi> targetDates = new ArrayList<>();
         for(Sobi targetDate : targetMonth){
